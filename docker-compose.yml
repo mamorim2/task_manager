@@ -1,0 +1,19 @@
+services:
+#  db:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: taskdb
+#    ports:
+#      - "5432:5432"
+
+  web:
+    build: .
+#    depends_on:
+#      - db
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "postgres://user:password@db:5432/taskdb"
