@@ -17,5 +17,6 @@ class AuthenticationTestCase(APITestCase):
         """Test invalid login attempt"""
         response = self.client.post("/api/auth/token/", {"username": "wronguser", "password": "wrongpass"})
         print(f"Response data: {response.status_code}")
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)  # Ensure it returns 401
-        self.assertIn("detail", response.data)  # JWT error messages return a "detail" field
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertIn("detail", response.data)
+
