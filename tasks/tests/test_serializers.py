@@ -1,17 +1,18 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from tasks.models import Task
 from tasks.serializers import TaskSerializer
 
 
 class TaskSerializerTest(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpass')
+        self.user = get_user_model().objects.create_user(
+            username="testuser", password="testpass"
+        )
         self.task_data = {
             "title": "Test Task",
             "description": "Test Description",
             "status": "pending",
-            "assigned_to": self.user.id
+            "assigned_to": self.user.id,
         }
 
     def test_valid_serializer(self):

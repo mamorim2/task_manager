@@ -10,14 +10,17 @@ class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['status', 'due_date']
-    ordering_fields = ['due_date', 'created_at']
+    filterset_fields = ["status", "due_date"]
+    ordering_fields = ["due_date", "created_at"]
 
     def perform_create(self, serializer):
         if not serializer.validated_data.get("assigned_to"):
-            serializer.save(assigned_to=self.request.user)  # Assign current user if missing
+            serializer.save(
+                assigned_to=self.request.user
+            )  # Assign current user if missing
         else:
             serializer.save()
+
 
 class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()

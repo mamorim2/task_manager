@@ -3,10 +3,15 @@ from rest_framework import status
 from django.contrib.auth import get_user_model
 from tasks.models import Task
 
+
 class TaskPermissionTestCase(APITestCase):
     def setUp(self):
-        self.owner = get_user_model().objects.create_user(username='owner', password='testpass')
-        self.other_user = get_user_model().objects.create_user(username='otheruser', password='testpass')
+        self.owner = get_user_model().objects.create_user(
+            username="owner", password="testpass"
+        )
+        self.other_user = get_user_model().objects.create_user(
+            username="otheruser", password="testpass"
+        )
 
         self.task = Task.objects.create(title="Owner Task", assigned_to=self.owner)
         self.task_url = f"/api/tasks/{self.task.id}/"

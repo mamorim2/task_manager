@@ -32,3 +32,15 @@ pre-commit = "^4.1.0"
 DJANGO_SETTINGS_MODULE = "task_manager.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 addopts = "--cov=tasks --cov-report=term-missing"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+exclude = '''
+/(
+    migrations
+  | __pycache__
+  | venv
+  | env
+)/
+'''

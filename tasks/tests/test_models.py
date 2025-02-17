@@ -2,15 +2,18 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from tasks.models import Task
 
+
 class TaskModelTest(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpass')
+        self.user = get_user_model().objects.create_user(
+            username="testuser", password="testpass"
+        )
         self.task = Task.objects.create(
             title="Sample Task",
             description="Test Description",
             due_date="2025-01-01",
             status="pending",
-            assigned_to=self.user
+            assigned_to=self.user,
         )
 
     def test_task_creation(self):
